@@ -1,4 +1,4 @@
-import { Outlet, NavLink, Link } from "react-router-dom";
+import { Outlet, NavLink, Link, useNavigation } from "react-router-dom";
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
@@ -9,8 +9,11 @@ function classNames(...classes) {
 
 
 export default function Layout() {
+  const navigation = useNavigation();
+
   return (
     <>
+    
       <Disclosure as="nav" className="bg-white shadow">
         {({ open }) => (
           <>
@@ -57,7 +60,8 @@ export default function Layout() {
                         isActive ? `border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium` : `border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`
                       }
                     >
-                      Users
+                      {navigation.state === "idle" && 'Users'}
+                      {navigation.state === "loading" && <span className="flex justify-center items-center">Users &nbsp;<svg xmlns="http://www.w3.org/2000/svg" className="animate-spin h-4 w-4 stroke-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg></span>}     
                     </NavLink>
                   </div>
                 </div>
