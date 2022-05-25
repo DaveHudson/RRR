@@ -67,6 +67,18 @@ export default function Users() {
                     </td>
                   </tr>
                 ))}
+                <tr key="broken.user@me.com">
+                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">
+                    A broken user
+                  </td> 
+                  <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">broken.user@me.com</td>
+                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">     
+                      <Link to={`/users/broken-user`} className="text-blue-600 hover:text-blue-900">
+                        Edit
+                      </Link>
+                      &nbsp;{(navigation.state === "loading" && navigation.location.pathname === `/users/broken-user`) && <span>(fetching user...)</span>}
+                    </td>                                   
+                </tr>
               </tbody>
             </table>
           </div>

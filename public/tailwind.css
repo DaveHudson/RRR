@@ -707,12 +707,12 @@ select {
   margin-top: 0.75rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
-
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .mt-1 {
@@ -1089,6 +1089,11 @@ select {
   line-height: 1.5rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -1109,6 +1114,10 @@ select {
 
 .font-bold {
   font-weight: 700;
+}
+
+.leading-6 {
+  line-height: 1.5rem;
 }
 
 .text-gray-400 {
