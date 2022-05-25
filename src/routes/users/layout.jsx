@@ -1,10 +1,8 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default function UsersLayout() {
   return (
-    <div>
-      <Link to="/users/new">New User</Link>
-      <hr />
+    <div className="pt-12">
       <Outlet />
     </div>
   )

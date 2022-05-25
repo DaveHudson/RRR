@@ -1,5 +1,4 @@
-import { useLoaderData, Link } from "react-router-dom"
-
+import { Outlet } from "react-router-dom";
 
 export async function loader({ params }) {
   const res = await fetch(`http://localhost:3001/users/${params.userId}`)
@@ -11,14 +10,8 @@ export async function loader({ params }) {
   return res.json()
 }
 
-export default function Details() {
-  const user = useLoaderData()  
-  
-  return (
-    <>
-      <h2>{user.name}</h2>
-      <Link to={`delete`}>Delete</Link>
-    </>
+export default function UserLayout() {
+  return (    
+    <Outlet />    
   )
-
 }

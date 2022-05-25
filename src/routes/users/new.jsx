@@ -1,4 +1,4 @@
-import { Form, redirect, useActionData } from "react-router-dom"
+import { Form, redirect, useActionData, useNavigation } from "react-router-dom"
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
 
 export async function action({ request }) {
@@ -33,53 +33,61 @@ export async function action({ request }) {
 }
 
 export default function NewUser() {
+  const navigation = useNavigation();
   const errors = useActionData();
   
   return (
-    <Form method="post" className="space-y-8 divide-y divide-gray-200 mt-4 max-w-md">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-          Name
-        </label>
-        <div className="mt-1 relative rounded-md shadow-sm">
-          <input
-            type="text"
-            name="name"
-            id="name"
-            className={errors?.name ? `block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md` : `shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md`}
-          />
-          {errors?.name && <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"><ExclamationCircleIcon className="h-5 w-5 text-red-500" aria-hidden="true" /></div>}
+    <>
+     <h1 className="text-2xl font-bold text-gray-900 truncate">Create a user</h1>
+      <Form method="post" className="space-y-8 mt-4 max-w-md">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Name
+          </label>
+          <div className="mt-1 relative rounded-md shadow-sm">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className={errors?.name ? `block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md` : `shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md disabled:opacity-50`}
+              disabled={navigation.state !== "idle" ? true : false}
+            />
+            {errors?.name && <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"><ExclamationCircleIcon className="h-5 w-5 text-red-500" aria-hidden="true" /></div>}
+          </div>
+          <p className="mt-2 text-sm text-red-600" id="email-error">
+            {errors?.name && <span>{errors.name}</span>}
+          </p>
         </div>
-        <p className="mt-2 text-sm text-red-600" id="email-error">
-          {errors?.name && <span>{errors.name}</span>}
-        </p>
-      </div>
 
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-          Email
-        </label>
-        <div className="mt-1 relative rounded-md shadow-sm">
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className={errors?.email ? `block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md` : `shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md`}
-            placeholder="you@example.com"
-          />
-          {errors?.email && <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"><ExclamationCircleIcon className="h-5 w-5 text-red-500" aria-hidden="true" /></div>}
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            Email
+          </label>
+          <div className="mt-1 relative rounded-md shadow-sm">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className={errors?.email ? `block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md` : `shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md disabled:opacity-50`}
+              placeholder="you@example.com"
+              disabled={navigation.state !== "idle" ? true : false}
+            />
+            {errors?.email && <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"><ExclamationCircleIcon className="h-5 w-5 text-red-500" aria-hidden="true" /></div>}
+          </div>
+          <p className="mt-2 text-sm text-red-600" id="email-error">
+            {errors?.email && <span>{errors.email}</span>}
+          </p>
         </div>
-        <p className="mt-2 text-sm text-red-600" id="email-error">
-          {errors?.email && <span>{errors.email}</span>}
-        </p>
-      </div>
 
-      <button
-        type="submit"
-        className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-      >
-        Save
-      </button>
-    </Form>
+        <button
+          type="submit"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          {navigation.state === "idle" && 'Save'}
+          {navigation.state === "submitting" && 'Saving...'}
+          {navigation.state === "loading" && "Saved!"}
+        </button>
+      </Form>
+    </>
   )
 }

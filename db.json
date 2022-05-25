@@ -4,26 +4,6 @@
       "id": 1,
       "name": "Dave Hudson",
       "email": "dave.hudson@peppy.health"
-    },
-    {
-      "name": "Neato",
-      "email": "neat@neat.com",
-      "id": 2
-    },
-    {
-      "name": "sdfsdf",
-      "email": "sdfdsf",
-      "id": 3
-    },
-    {
-      "name": "dave",
-      "email": "test@test.com",
-      "id": 4
-    },
-    {
-      "name": "Nice",
-      "email": "nice@stuff.com",
-      "id": 5
     }
   ]
 }
