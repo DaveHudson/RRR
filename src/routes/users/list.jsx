@@ -1,18 +1,8 @@
-import { useLoaderData, Link, useNavigation } from "react-router-dom"
-
-export async function loader() {
-  const res = await fetch(`http://localhost:3001/users`)
-
-  if(res.status === 404) {
-    throw new Response("Not found", { status: 404})
-  }
-
-  return res.json()
-}
+import { useRouteLoaderData, Link, useNavigation } from "react-router-dom"
 
 export default function Users() {
   const navigation = useNavigation();
-  const users = useLoaderData()
+  const users = useRouteLoaderData("Users");
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
@@ -61,7 +51,7 @@ export default function Users() {
                     <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{user.email}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">     
                       <Link to={`/users/${user.id}`} className="text-blue-600 hover:text-blue-900">
-                        Edit
+                        View
                       </Link>
                       &nbsp;{(navigation.state === "loading" && navigation.location.pathname === `/users/${user.id}`) && <span>(fetching user...)</span>}
                     </td>
@@ -74,7 +64,7 @@ export default function Users() {
                   <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">broken.user@me.com</td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">     
                       <Link to={`/users/broken-user`} className="text-blue-600 hover:text-blue-900">
-                        Edit
+                        View
                       </Link>
                       &nbsp;{(navigation.state === "loading" && navigation.location.pathname === `/users/broken-user`) && <span>(fetching user...)</span>}
                     </td>                                   

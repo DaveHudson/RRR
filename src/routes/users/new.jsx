@@ -39,7 +39,7 @@ export default function NewUser() {
   return (
     <>
      <h1 className="text-2xl font-bold text-gray-900 truncate">Create a user</h1>
-      <Form method="post" className="space-y-8 mt-4 max-w-md">
+      <Form method="post" className="space-y-8 mt-4 max-w-md" noValidate>
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
             Name
