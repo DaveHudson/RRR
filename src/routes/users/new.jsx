@@ -52,8 +52,9 @@ export default function NewUser() {
               className={errors?.name ? `block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md` : `shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md disabled:opacity-50`}
               disabled={navigation.state !== "idle" ? true : false}
               autoComplete="no"
-              pattern="[A-Za-z]{3}"
-              title="Upper and lowercase, 3 characters"
+              required
+              pattern="[A-Za-z]{4}"
+              title="Upper or lowercase, 4 characters"
             />
             {errors?.name && <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"><ExclamationCircleIcon className="h-5 w-5 text-red-500" aria-hidden="true" /></div>}
           </div>
