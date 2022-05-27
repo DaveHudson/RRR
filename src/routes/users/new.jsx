@@ -19,7 +19,7 @@ export async function action({ request }) {
     return errors
   }
 
-  const res = await fetch(`http://localhost:3001/users`, {
+  const res = await fetch(`http://localhost:4001/users`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',

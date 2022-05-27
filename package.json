@@ -18,9 +18,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "server": "json-server --watch db.json --port 3001",
+    "server": "json-server --watch db.json --port 4001",
     "prestart": "npm run build:css",
-    "start": "react-scripts start",
+    "start": "PORT=4000 react-scripts start",
     "build:css": "tailwindcss -i ./tailwind.css -o ./public/tailwind.css",
     "build": "react-scripts build",
     "test": "react-scripts test",

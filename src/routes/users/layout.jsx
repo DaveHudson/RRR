@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 export async function loader() {
-  const res = await fetch(`http://localhost:3001/users`)
+  const res = await fetch(`http://localhost:4001/users`)
 
   if(res.status === 404) {
     throw new Response("Not found", { status: 404})

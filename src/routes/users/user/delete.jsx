@@ -1,7 +1,7 @@
 import { redirect, Form, useRouteLoaderData, useNavigation } from "react-router-dom"
 
 export async function action({ params }) {
-  await fetch(`http://localhost:3001/users/${params.userId}`, {
+  await fetch(`http://localhost:4001/users/${params.userId}`, {
     method: "DELETE"
   })
 
